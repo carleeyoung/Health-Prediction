@@ -125,7 +125,8 @@
                         <h1>Kidney Failure Analysis</h1>
                         <p class="lead text-muted">When predicting heart failure, one factor to consider is Coronary Artery Disease. There is a correlation positive between coronary artery disease and kidney failure, so we decided to explore further if the factors that predict kidney failure can also be used in predicting coronary artery disease. Using the Kaggle dataset in the link above, we looked at 25 measures of data including 1 class, 11 numeric, and 14 nominal data types for 154 instances.  We were able to predict with 97.44% accuracy whether or not a patient has coronary artery disease. </p>
                         <p class='lead text-muted'>Prior to analysis, the data was cleaned by removing rows with absent and erroneous information, reducing the instances from 400 to 154. Categorical data was binary encoded and then data was split into training and testing data groups. The prediction models tested include decision tree, random forest, logistical regression, support vector machine, K nearest neighbors, neural networks, and deep learning. These models yielded predictions with 89.74% – 97.44% accuracy. The most accurate models for predicting coronary artery disease were the random forest decision tree and K nearest neighbors which both predicted outcomes with 97.44% accuracy. Additionally, using the random forest decision tree model, the most significant factors for predicting coronary disease were serum creatinine, blood glucose random, blood urea, and sugar.</p>​
-                        <div class='row'>
+                        <p class="lead text-muted">Pictured below are the confusion matricies for the worst and best models using the original 154 rows and 24 categories of cleaned data.</p>
+                            <div class='row'>
                           <div class='col-md-6'>
                             <img src='../confusion_matrix/DT_norm_kidney.png' alt='DT_norm'width='350' height='300'>
                           </div>
@@ -141,36 +142,42 @@
                             <img src='../confusion_matrix/LR_notnorm_kidney.png' alt='LR_notnorm' width='350' height='300'>
                           </div>
                         </div>
+                        <p class='lead text-muted'>Given the low precision of the original 154 rows of data analyzed, I decided to investigate why the models were so poor at predicting positive results for Coronary Artery Disease (CAD).  In the dataset analyzed, only 10 results were positive for CAD.  Having stratified the CAD results for training and testing data, there were 7 and 3 yes results respectively for training and test data used for modeling and predictions.  In effort to achieve greater numbers of positive CAD results, I returned to the original 400 rows of data to explore further.  Prior to data cleaning and preparation, the original data had 400 rows of information with 30 positive CAD results.  All categorical and numberical characterization fields were plotted using the Seaborn pairplots library using CAD to color the datapoints.  Fields were chosen from the random tree model prediciting factors and the pairplot visualization to narrow the characterization from 24 parameters to 14.  Data was cleaned and 198 rows remained with 15 positive results for CAD.</p>
                         <div class='row'>
+                          <div class='col-md-6'>
+                            <img src='../y_train_test_split.png' alt='dataset-comparison'  width='350' height='300'>
+                          </div>
+                          <div class='col-md-6'>
+                            <img src='../y_pie.png' alt='yes-CAD-results'  width='550' height='300'>
+                          </div>
+                        </div> 
+                        <p class='lead text-muted'>Pairplots example for pre-cleaned data:</p>
+                        <div class='row'>
+                          <div class='col-md-12'>
+                            <img src='../confusion_matrix/PairPlot_DF.png' alt='pairplot'  width='1000' height='850'>
+                          </div>
+                        </div>
+                        <!-- <div class='row'>
                           <div class='col-md-6'>
                             <img src='../confusion_matrix/RF_norm_kidney.png' alt='LR_norm'width='350' height='300'>
                           </div>
                           <div class='col-md-6'>
                             <img src='../confusion_matrix/RF_notnorm_kidney.png' alt='LR_notnorm' width='350' height='300'>
                           </div>
-                        </div>
+                        </div> -->
+                        <p class='lead text-muted'>Moving forward with the new dataset, the same models were run.  Training and test data were stratified on CAD, giving 11 positive values for use in training the models and 4 positive values for testing each model.  Model precision did not improve with the increase in data rows and positive results for CAD.  The models for predicting CAD using the revised dataset showed 88 - 94% accuracy with 0 - 50% precision for predicting positive cases of CAD.  The model that best predicted the positive results for CAD was the Scale Vector Machine with 94% accuracy and accurately predicing positive results for half of the positive data.</p>
+                        <p class="lead text-muted">Pictured below are the confusion matricies for the best model using the revised 198 rows and 14 categories of cleaned data.</p>
                         <div class='row'>
                           <div class='col-md-6'>
-                            <img src='../confusion_matrix/SVM_norm_kidney.png' alt='LR_norm'width='350' height='300'>
+                            <img src='../confusion_matrix/SVM_norm_kidney.png' alt='SVM_norm'width='350' height='300'>
                           </div>
                           <div class='col-md-6'>
-                            <img src='../confusion_matrix/SVM_notnorm_kidney.png' alt='LR_notnorm' width='350' height='300'>
-                          </div>
-                        <div class='row'>
-                          <div class='col-md-12'>
-                            <img src='../confusion_matrix/PairPlot_DF.png' alt='LR_notnorm'  width='1000' height='850'>
+                            <img src='../confusion_matrix/SVM_notnorm_kidney.png' alt='SVM_notnorm' width='350' height='300'>
                           </div>
                         </div>
-                        <div class='row'>
-                          <div class='col-md-6'>
-                            <img src='../y_train_test_split.png' alt='LR_notnorm'  width='350' height='300'>
-                          </div>
-                          <div class='col-md-6'>
-                            <img src='../y_pie.png' alt='LR_notnorm'  width='550' height='300'>
-                          </div>
-                        </div> 
+                        <p class='lead text-muted'>The overall best model for predicting CAD using the kidney dataset was the logistic regression model with the 154 row and 24 category dataset.  This model had 92.31% accuracy and predicted 2/3 of positive results correctly.</p>
+                        
 
-                        </div>
                     </div>
                 </div>
             </div>
